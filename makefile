@@ -6,4 +6,4 @@ pull:
 	-git pull
 
 clean:
-	find . -name "*.pyc" -and -name "*~" -exec rm {} \;
+	find . -name "*.pyc" -or -name "*~" -exec rm {} \;
