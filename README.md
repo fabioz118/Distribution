@@ -36,7 +36,7 @@ This codes produce a file called "binaries.dat" in which are the fundamental par
 20: z Metallicity
 
 
-1.1. Plots of the selected neutron star binaries:
+* Plots of the selected neutron star binaries:
 Input: "binaries.dat"
 Output: Scatter plots ".png"
 
