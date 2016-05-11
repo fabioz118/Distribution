@@ -1,0 +1,83 @@
+M1 = 3.0 M2 = 0.3
+tmax = 15000.
+Porb = 200.0 days, Separation in Solar Radii
+K1 = 1
+K2 = 1
+Z = 0.001
+e=0.5
+
+Mass-loss 0.5 0.0 1.0
+
+Common envolope parameters 3.0 0.5
+
+energy correction: 0
+circularisation: 1
+Initial/Final mass relation WD: 0
+Cooling WD: 1
+Kick-velocity BH?: 0
+Mass NS/BH?: 1
+Maximum mass of NS: (0:1.8, 1:3.0): 3.0
+
+
+random number seed:
+29769
+
+Time step for MS : 0.05
+Time step for GB... : 0.01
+Time step for HG... : 0.02
+
+Kick:
+sigma = 190.0
+beta = 0.125
+
+Accretion:
+xi = 1.0
+acc2 = 1.5
+epsnov = 0.001
+eddfac = 10.0
+gamma = -1.0
+
+
+c     STELLAR TYPES - KW
+c
+c        0 - deeply or fully convective low mass MS star
+c        1 - Main Sequence star
+c        2 - Hertzsprung Gap
+c        3 - First Giant Branch
+c        4 - Core Helium Burning
+c        5 - First Asymptotic Giant Branch
+c        6 - Second Asymptotic Giant Branch
+c        7 - Main Sequence Naked Helium star
+c        8 - Hertzsprung Gap Naked Helium star
+c        9 - Giant Branch Naked Helium star
+c       10 - Helium White Dwarf
+c       11 - Carbon/Oxygen White Dwarf
+c       12 - Oxygen/Neon White Dwarf
+c       13 - Neutron Star
+c       14 - Black Hole
+c       15 - Massless Supernova
+
+
+      label(1) = 'INITIAL '
+      label(2) = 'KW CHNGE'  - Change in evolutionary stage
+      label(3) = 'BEG RCHE'  - Begin Roche
+      label(4) = 'END RCHE'
+      label(5) = 'CONTACT '
+      label(6) = 'COELESCE'
+      label(7) = 'COMENV  '
+      label(8) = 'GNTAGE  '
+      label(9) = 'NO REMNT'
+      label(10) = 'MAX TIME'
+      label(11) = 'DISRUPT '
+      label(12) = 'BEG SYMB'
+      label(13) = 'END SYMB'
+      label(14) = 'BEG BSS'
+
+Data in files ".dat":
+
+Time,
+*    [stellar type, initial mass, current mass, log10(L), log10(r),
+*    log10(Teff), core mass, core radius, mass of any convective
+*    envelope, radius of the envelope, epoch, spin, mass loss rate and
+*    ratio of radius to roche lobe radius (repeated for secondary)],
+*    period, separation, eccentricity. 
