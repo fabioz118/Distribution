@@ -2,7 +2,7 @@ This text is with the purpose to explain, describe and keep record of the way th
 
 Here the steps:
 
-1.Neutron Star Binaries generation (Binaries Folder):
+*Neutron Star Binaries generation (Binaries Folder):
 Input: All the files ".f" and ".o" in the file.
 
 
@@ -43,7 +43,7 @@ Output: Scatter plots ".png"
 Code plots.py do some scatter plots for parameters of the resultant systems. 
 
 
-2. Initial conditions and Rejection (Rejection Folder):
+* Initial conditions and Rejection (Rejection Folder):
 Input: "binaries.dat", "metallicity_gradient.dat", "SFR.dat"
 Output: "ics_disk.dat"
 
@@ -63,7 +63,7 @@ Now, code rejection.py run a rejection of initial conditions to include the  met
 """
 
 
-3. Orbits integration (Orbits folder):
+*Orbits integration (Orbits folder):
 Input:"ics_disk.dat"
 Output:Folder "Orbits" containing "orbits_*dat", "times_*.dat", "orbits_general.dat"
 
