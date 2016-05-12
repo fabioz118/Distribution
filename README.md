@@ -17,24 +17,24 @@ bse-manual.txt explains the values needed in the initial conditions for the runn
 
 Output:
 This codes produce a file called "binaries.dat" in which are the fundamental parameters of each binary system to continue with the procedures. Parameters, which are:
-"""
-1: Number
-2: ID
-3: Initial mass 1
-4: Initial mass 2
-5: Neutron star mass 1
-6: Neutron star mass 1
-7: Supernova time 1
-8: Supernova time 2
-9: e0, Initial eccentricity
-10: a0,Initial semimajor axis
-11: e, Final eccentricity
-12: a, Final semimajor axis
-13: t, decay timescale
-14,15,16: vx1,vy1, vz1 , Center of Mass velocity at first kick
-17,18,19: vx2,vy2, vz2 , Center of Mass velocity at second kick
-20: z Metallicity
-"""
+
+*1: Number
+*2: ID
+*3: Initial mass 1
+*4: Initial mass 2
+*5: Neutron star mass 1
+*6: Neutron star mass 1
+*7: Supernova time 1
+*8: Supernova time 2
+*9: e0, Initial eccentricity
+*10: a0,Initial semimajor axis
+*11: e, Final eccentricity
+*12: a, Final semimajor axis
+*13: t, decay timescale
+*14,15,16: vx1,vy1, vz1 , Center of Mass velocity at first kick
+*17,18,19: vx2,vy2, vz2 , Center of Mass velocity at second kick
+*20: z Metallicity
+
 
 *Plots of the selected neutron star binaries:
 Input: "binaries.dat"
@@ -49,18 +49,17 @@ Output: "ics_disk.dat"
 
 Now, code rejection.py run a rejection of initial conditions to include the  metallicity gradient and star formation rate (SFR). The output is a file with positions and velocities called "ics.dat":
 
-"""
-1,2,3=x,y,z
-4,5,6=vx,vy,vz
-7: supernova time 1
-8: supernova time 2
-9: decay timescale
-10,11,12= kick1 vx,vy,vz
-13,14,15= kick2 vx,vy,vz
-16: metallicity
-17: Galactocentric distance
-18: SFR
-"""
+*1,2,3=x,y,z
+*4,5,6=vx,vy,vz
+*7: supernova time 1
+*8: supernova time 2
+*9: decay timescale
+*10,11,12= kick1 vx,vy,vz
+*13,14,15= kick2 vx,vy,vz
+*16: metallicity
+*17: Galactocentric distance
+*18: SFR
+
 
 3.Orbits integration (Orbits folder):
 Input:"ics_disk.dat"
