@@ -2,7 +2,7 @@ This text is with the purpose to explain, describe and keep record of the way th
 
 Here the steps:
 
-*Neutron Star Binaries generation (Binaries Folder):
+1.Neutron Star Binaries generation (Binaries Folder):
 Input: All the files ".f" and ".o" in the file.
 
 
@@ -17,7 +17,7 @@ bse-manual.txt explains the values needed in the initial conditions for the runn
 
 Output:
 This codes produce a file called "binaries.dat" in which are the fundamental parameters of each binary system to continue with the procedures. Parameters, which are:
-
+"""
 1: Number
 2: ID
 3: Initial mass 1
@@ -34,16 +34,16 @@ This codes produce a file called "binaries.dat" in which are the fundamental par
 14,15,16: vx1,vy1, vz1 , Center of Mass velocity at first kick
 17,18,19: vx2,vy2, vz2 , Center of Mass velocity at second kick
 20: z Metallicity
+"""
 
-
-* Plots of the selected neutron star binaries:
+*Plots of the selected neutron star binaries:
 Input: "binaries.dat"
 Output: Scatter plots ".png"
 
 Code plots.py do some scatter plots for parameters of the resultant systems. 
 
 
-* Initial conditions and Rejection (Rejection Folder):
+2.Initial conditions and Rejection (Rejection Folder):
 Input: "binaries.dat", "metallicity_gradient.dat", "SFR.dat"
 Output: "ics_disk.dat"
 
@@ -62,8 +62,7 @@ Now, code rejection.py run a rejection of initial conditions to include the  met
 18: SFR
 """
 
-
-*Orbits integration (Orbits folder):
+3.Orbits integration (Orbits folder):
 Input:"ics_disk.dat"
 Output:Folder "Orbits" containing "orbits_*dat", "times_*.dat", "orbits_general.dat"
 
