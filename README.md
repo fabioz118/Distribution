@@ -2,7 +2,7 @@ This text is with the purpose to explain, describe and keep record of the way th
 
 Here the steps:
 
-###Neutron Star Binaries generation (Binaries Folder):
+####Neutron Star Binaries generation (Binaries Folder):
 - Input: All the files ".f" and ".o" in the file.
 
 
@@ -36,14 +36,14 @@ This codes produce a file called "binaries.dat" in which are the fundamental par
 - 20: z Metallicity
 
 
-###Plots of the selected neutron star binaries:
+####Plots of the selected neutron star binaries:
 - Input: "binaries.dat"
 - Output: Scatter plots ".png"
 
 Code plots.py do some scatter plots for parameters of the resultant systems. 
 
 
-###Initial conditions and Rejection (Rejection Folder):
+####Initial conditions and Rejection (Rejection Folder):
 - Input: "binaries.dat", "metallicity_gradient.dat", "SFR.dat"
 - Output: "ics_disk.dat"
 
@@ -61,12 +61,13 @@ Now, code rejection.py run a rejection of initial conditions to include the  met
 - 18: SFR
 
 
-###Orbits integration (Orbits folder):
+####Orbits integration (Orbits folder):
 - Input:"ics_disk.dat"
 - Output:Folder "Orbits" containing "orbits_*dat", "times_*.dat", "orbits_general.dat"
 
 Code "orbit_integration.py" solve the equation of motion in different time intervals. The motion is under potential for a Milky Way galaxy.
 The run output in directory called "orbits" the positions and velocities in each step time for each binary system. 
 
+####Contours surface
 
 
