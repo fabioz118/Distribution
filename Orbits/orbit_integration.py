@@ -1,4 +1,5 @@
-########### This code integrate the trajectory of binary systems under the Milky Way's Potential
+########### This code integrate the trajectory of binary systems under the Milky Way's Potential.
+#Modified 11th May
 
 
 from matplotlib.pyplot import *

@@ -43,7 +43,6 @@ Output: Scatter plots ".png"
 Code plots.py do some scatter plots for parameters of the resultant systems. 
 
 
-
 2. Initial conditions and Rejection (Rejection Folder):
 Input: "binaries.dat", "metallicity_gradient.dat", "SFR.dat"
 Output: "ics_disk.dat"
