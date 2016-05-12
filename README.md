@@ -18,13 +18,13 @@ bse-manual.txt explains the values needed in the initial conditions for the runn
 -Output:
 This codes produce a file called "binaries.dat" in which are the fundamental parameters of each binary system to continue with the procedures.
 
--1: Number
--2: ID
--3: Initial mass 1
--4: Initial mass 2
--5: Neutron star mass 1
--6: Neutron star mass 1
--7: Supernova time 1
+- 1: Number
+- 2: ID
+- 3: Initial mass 1
+- 4: Initial mass 2
+- 5: Neutron star mass 1
+- 6: Neutron star mass 1
+- 7: Supernova time 1
 -8: Supernova time 2
 -9: e0, Initial eccentricity
 -10: a0,Initial semimajor axis
