@@ -18,7 +18,7 @@ bse-manual.txt explains the values needed in the initial conditions for the runn
 - Output:
 This codes produce a file called "binaries.dat" in which are the fundamental parameters of each binary system to continue with the procedures.
 
-..- 1: Number
+..* 1: Number
 - 2: ID
 - 3: Initial mass 1
 - 4: Initial mass 2
