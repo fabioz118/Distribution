@@ -49,13 +49,13 @@ Code plots.py do some scatter plots for parameters of the resultant systems.
 
 Now, code rejection.py run a rejection of initial conditions to include the  metallicity gradient and star formation rate (SFR). The output is a file with positions and velocities called "ics.dat":
 
-- 1,2,3=x,y,z
-- 4,5,6=vx,vy,vz
+- 1,2,3: x,y,z
+- 4,5,6: vx,vy,vz
 - 7: supernova time 1
 - 8: supernova time 2
 - 9: decay timescale
-- 10,11,12= kick1 vx,vy,vz
-- 13,14,15= kick2 vx,vy,vz
+- 10,11,12: kick1 vx,vy,vz
+- 13,14,15: kick2 vx,vy,vz
 - 16: metallicity
 - 17: Galactocentric distance
 - 18: SFR
