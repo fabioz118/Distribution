@@ -27,7 +27,7 @@ commands.getoutput('rm orbits/distribution.dat')
 ###################### Potential definition and differential ecuation systems definition
 #Lenght units : 3.5 kpc
 #Mass units : 5.5e10 Msun
-#Time units : 
+#Time units : 13 Gyr
 
 G = 1.0             #Gravitational constant
 h = 1.0             #Lenght scale disk
