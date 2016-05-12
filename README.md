@@ -16,7 +16,7 @@ Once installed, the code bns.py can run without any problem. Also, bns.py needs 
 bse-manual.txt explains the values needed in the initial conditions for the running. THis conditions are generated in bns.p
 
 Output:
-This codes produce a file called "binaries.dat" in which are the fundamental parameters of each binary system to continue with the procedures. Parameters, which are:
+This codes produce a file called "binaries.dat" in which are the fundamental parameters of each binary system to continue with the procedures. Paramete.
 
 *1: Number
 *2: ID
