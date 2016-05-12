@@ -54,7 +54,7 @@ Now, code rejection.py run a rejection of initial conditions to include the  met
 - 7: supernova time 1
 - 8: supernova time 2
 - 9: decay timescale
-- 10,11,12: kick1 vx,vy,vz
+  - 10,11,12: kick1 vx,vy,vz
 - 13,14,15: kick2 vx,vy,vz
 - 16: metallicity
 - 17: Galactocentric distance
@@ -68,6 +68,8 @@ Now, code rejection.py run a rejection of initial conditions to include the  met
 Code "orbit_integration.py" solve the equation of motion in different time intervals. The motion is under potential for a Milky Way galaxy.
 The run output in directory called "orbits" the positions and velocities in each step time for each binary system. 
 
-####Contours surface
+####Density surfaces (Contours Folder):
+
+
 
 
