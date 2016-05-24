@@ -202,34 +202,31 @@ for i in range(260,6189):
         x_orb=[]
         y_orb=[]
         z_orb=[]
+        t_orb=[]
         for j in range(len(r0[:,0])):
             x_orb.append(r0[j,0]*3.5)
             y_orb.append(r0[j,1]*3.5)
             z_orb.append(r0[j,2]*3.5)
+            t_orb.append(t0[j]*13) #Time in Myr
             
             
-            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
-            orbits1.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
+            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
             
-            
-            if (13*t0[j]==tsn2):
-                times.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))         
+                 
                 
         x_orb=[]
         y_orb=[]
         z_orb=[]
+        t_orb=[]
         for j in range(len(r1[:,0])):
             
             x_orb.append(r1[j,0]*3.5)
             y_orb.append(r1[j,1]*3.5)
             z_orb.append(r1[j,2]*3.5)
-            
-            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
-            orbits1.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
-            
-            
-            if (13*t1[j]==tsn1):
-                times.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
+            t_orb.append(t0[j]*13) #Time in Myr
+
+            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j], t_orb[j]))
+
                 
         x_orb=[]
         y_orb=[]
@@ -239,13 +236,10 @@ for i in range(260,6189):
             x_orb.append(r2[j,0]*3.5)
             y_orb.append(r2[j,1]*3.5)
             z_orb.append(r2[j,2]*3.5)
-            
-            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
-            orbits1.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))        
-            
-            if (13*t2[j]==tdecay):
-                times.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
-                
+            t_orb.append(t0[j]*13) #Time in Myr
+
+            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j], t_orb[j]))
+
                 
         orbits.write("\n")
         orbits1.write("\n")
@@ -283,37 +277,37 @@ for i in range(260,6189):
         ###########################Saving orbits in files
         ###     tsn1 < tsn2
         
+
+        
+        
         x_orb=[]
         y_orb=[]
         z_orb=[]
+        t_orb=[]
         for j in range(len(r0[:,0])):
             x_orb.append(r0[j,0]*3.5)
             y_orb.append(r0[j,1]*3.5)
             z_orb.append(r0[j,2]*3.5)
-            
-            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
-            orbits1.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
+            t_orb.append(t0[j]*13) #Time in Myr
             
             
-            if (13*t0[j]==tsn1):
-                times.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
-
+            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
+            
+                 
+                
         x_orb=[]
         y_orb=[]
         z_orb=[]
+        t_orb=[]
         for j in range(len(r1[:,0])):
             
             x_orb.append(r1[j,0]*3.5)
             y_orb.append(r1[j,1]*3.5)
             z_orb.append(r1[j,2]*3.5)
-            
-            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
-            orbits1.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
-            
-            
-            if (13*t1[j]==tsn2):
-                times.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
-                
+            t_orb.append(t0[j]*13) #Time in Myr
+
+            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j], t_orb[j]))
+
                 
         x_orb=[]
         y_orb=[]
@@ -323,15 +317,9 @@ for i in range(260,6189):
             x_orb.append(r2[j,0]*3.5)
             y_orb.append(r2[j,1]*3.5)
             z_orb.append(r2[j,2]*3.5)
-            
-            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
-            orbits1.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))        
-            
-            if (13*t2[j]==tdecay):
-                times.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j]))
+            t_orb.append(t0[j]*13) #Time in Myr
+
+            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j], t_orb[j]))
+
                 
         orbits.write("\n")
-        orbits1.write("\n")
-
-
-        
