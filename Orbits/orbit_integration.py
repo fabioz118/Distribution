@@ -27,7 +27,7 @@ commands.getoutput('rm orbits/distribution.dat')
 ###################### Potential definition and differential ecuation systems definition
 #Lenght units : 3.5 kpc
 #Mass units : 5.5e10 Msun
-#Time units : 13 Gyr
+#Time units : 13 Myr
 
 G = 1.0             #Gravitational constant
 h = 1.0             #Lenght scale disk
@@ -159,6 +159,9 @@ for i in range(260,6189):
     vyg2= (-sinnode*cosi*cosp - cosnode*sinp)*vk2x + (-sinnode*cosi*sinp + cosnode*cosp)*vk2y + (sinnode*sini)*vk2z
     vzg2= (sini*cosp)*vk2x + (sini*sinp)*vk2y + cosi*vk2z
     
+    #######################Initial time for integration (bigger than the minimum time to the first merger to occur 3e7 yr)
+    ## Fiducial model van der Voort et al. 2014
+    t=random.uniform(2.3,769.23)  #internal time units
 
     ###########################Differential ecuations solver
     ###        tsn1 > tsn2
