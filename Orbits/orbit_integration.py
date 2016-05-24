@@ -41,6 +41,9 @@ r200 = 73.71        #Virial radius
 rho_c = 1.12e-7     #Critical density
 rho1 = 200*rho_c*(r200/r_h)*(1+r200/r_h)**2  
 rho = M_bulge/2*np.pi*pow(a,3)
+## Miyyamoto-Nagai parameters fit.
+a1=1.22151486
+b1= 0.2508
 
 #### Definition of the  system of ordinary differential equiations. The solution are positions and velocities as function of time
 def EOS(y,t):
@@ -52,13 +55,13 @@ def EOS(y,t):
 
     r2=(y[0]**2+y[1]**2)**0.5
      
-    dvdt_x= -G*M_disk*(y[0]/ ((r2**2+(h+(y[2]**2+b**2)**0.5)**2))**1.5)  - 2*np.pi*G*rho*pow(a,3)* \
+    dvdt_x= -G*M_disk*(y[0]/ ((r2**2+(a1+(y[2]**2+b1**2)**0.5)**2))**1.5)  - 2*np.pi*G*rho*pow(a,3)* \
             (y[0]/(r2*(a+r2)**2))  -  4*np.pi*G*rho1*pow(r_h,3)* ( ((r_h+r2)*np.log(1+r2/r_h) - r2)*y[0])/( r2**3 * (r_h+r2)**2)
 
-    dvdt_y= -G*M_disk*(y[1]/ ((r2**2+(h+(y[2]**2+b**2)**0.5)**2))**1.5)  - 2*np.pi*G*rho*pow(a,3)* \
+    dvdt_y= -G*M_disk*(y[1]/ ((r2**2+(a1+(y[2]**2+b1**2)**0.5)**2))**1.5)  - 2*np.pi*G*rho*pow(a,3)* \
             (y[1]/(r2*(a+r2)**2))  -  4*np.pi*G*rho1*pow(r_h,3)* ( ((r_h+r2)*np.log(1+r2/r_h) - r2)*y[1])/( r2**3 * (r_h+r2)**2)
 
-    dvdt_z= -G*M_disk*( y[2]*(h+(y[2]**2+b**2)**0.5) / ( (y[2]**2+b**2)**0.5)*(r2**2+(h+(y[2]**2+b**2)**0.5)**2)**1.5    )
+    dvdt_z= -G*M_disk*( y[2]*(a1+(y[2]**2+b1**2)**0.5) / ( (y[2]**2+b**2)**0.5)*(r2**2+(h+(y[2]**2+b**2)**0.5)**2)**1.5    )
     
     return [drdt[0],drdt[1],drdt[2],dvdt_x,dvdt_y,dvdt_z]
 
