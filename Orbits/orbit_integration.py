@@ -231,6 +231,7 @@ for i in range(260,6189):
         x_orb=[]
         y_orb=[]
         z_orb=[]
+        t_orb=[]
         for j in range(len(r2[:,0])):
             
             x_orb.append(r2[j,0]*3.5)
@@ -242,7 +243,6 @@ for i in range(260,6189):
 
                 
         orbits.write("\n")
-        orbits1.write("\n")
 
 
     else:
@@ -276,9 +276,7 @@ for i in range(260,6189):
                
         ###########################Saving orbits in files
         ###     tsn1 < tsn2
-        
-
-        
+             
         
         x_orb=[]
         y_orb=[]
@@ -312,6 +310,7 @@ for i in range(260,6189):
         x_orb=[]
         y_orb=[]
         z_orb=[]
+        t_orb=[]
         for j in range(len(r2[:,0])):
             
             x_orb.append(r2[j,0]*3.5)
