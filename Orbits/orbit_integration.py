@@ -168,7 +168,6 @@ for i in range(260,6189):
     
 
     orbits=open('orbits/orbits_%04d.dat'%i,'a')
-    times=open('orbits/times_%04d.dat'%i,'a')
 
     if (tsn1 > tsn2):
 	## Time intervals
@@ -197,7 +196,7 @@ for i in range(260,6189):
         print "Final galactocentric distance = %.5f"%(r*3.5)
         print "\n"
         
-        ###########################Saving orbits in files
+        ###########################Saving orbits in files. Coordinates in kpc and time in Myr.
         
         x_orb=[]
         y_orb=[]
