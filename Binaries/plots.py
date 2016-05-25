@@ -4,8 +4,6 @@
 #Inputs: "Binaries.dat", which is the bns.py output.
 #Outputs: ".png" plots
 
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
@@ -85,10 +83,10 @@ for i in range(len(t)):
             m4.append(mass1[i])
             
 plt.figure(0)
-line1,=plt.plot(m1,ns1,'b.',label='4e-4<Z<7.8e-3')
-line2,=plt.plot(m2,ns2,'g.',label='7.8e-3<Z<1.5e-2')
-line3,=plt.plot(m3,ns3,'r.',label='1.5e-2<Z<2.2e-2')
-line4,=plt.plot(m4,ns4,'k.',label='2.2e-2<Z<3e-2')
+line1,=plt.plot(m1,ns1,'b.',label='%.f <Z< %.f'%(a1,b1))
+line2,=plt.plot(m2,ns2,'g.',label='%.f <Z< %.f'%(a2,b2))
+line3,=plt.plot(m3,ns3,'r.',label='%.f <Z< %.f'%(a3,b3))
+line4,=plt.plot(m4,ns4,'k.',label='%.f <Z< %.f'%(a4,b4))
 plt.legend(handles=[line1,line2,line3,line4], loc=1)    
 plt.xlabel('Initial mass (Msun)')
 plt.ylabel('Neutron star mass (Msun)')
@@ -219,10 +217,10 @@ for i in range(len(mass1)):
             M4.append(M)
             
 plt.figure(11)
-line1,=plt.plot(M1,sn1,'b.',label='4e-4<Z<7.8e-3')
-line2,=plt.plot(M2,sn2,'g.',label='7.8e-3<Z<1.5e-2')
-line3,=plt.plot(M3,sn3,'r.',label='1.5e-2<Z<2.2e-2')
-line4,=plt.plot(M4,sn4,'k.',label='2.2e-2<Z<3e-2')
+line1,=plt.plot(M1,sn1,'b.',label='%.f <Z< %.f'%(a1,b1))
+line2,=plt.plot(M2,sn2,'g.',label='%.f <Z< %.f'%(a2,b2))
+line3,=plt.plot(M3,sn3,'r.',label='%.f <Z< %.f'%(a3,b3))
+line4,=plt.plot(M4,sn4,'k.',label='%.f <Z< %.f'%(a4,b4))
 plt.legend(handles=[line1,line2,line3,line4], loc=1)
 plt.xlabel('Total mass (MSun)')
 plt.ylabel('Supernova time (Myr)')
