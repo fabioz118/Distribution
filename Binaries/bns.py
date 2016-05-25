@@ -3,6 +3,9 @@
 
 #Initial files generator with purpose to run bse.f (binary stellar evolution) code from amuse. Testing DISRUPT, both binary components Neutron Stars and decay timescale t<10000 Myr.
 
+#Inputs: All the ".f" files in this folder, also AMUSE must be installed (see the README.md file). 
+
+#Outputs: "binaries.dat"
 
 from amuse.lab import *
 import commands

@@ -1,7 +1,7 @@
 ########### This code integrate the trajectory of binary systems under the Milky Way's Potential.
 #Modified 23th May
 
-
+#### Input: distribution.dat This file contai the initial conditions for a disk with r < 50kpc
 from matplotlib.pyplot import *
 from numpy import *
 from scipy.integrate import odeint
@@ -69,7 +69,7 @@ def EOS(y,t):
 ###########################Creating files
 
 distribution=open('orbits/distribution.dat','a')
-orbits1=open('orbits/orbits_general.dat','a')
+orbits1=open('orbits_general.dat','a')
 
 ics=np.genfromtxt('ics.dat')
 """
@@ -146,24 +146,24 @@ for i in range(260,6189):
     sinp=np.sin(-periapsis)
     
     
-    ########################Matrix rotation aplication first kick
+    ######################## Matrix rotation aplication first kick
     
     vxg1= (cosnode*cosi*cosp - sinnode*sinp)*vk1x + (cosnode*cosi*sinp + sinnode*cosp)*vk1y + (-cosnode*sini)*vk1z
     vyg1= (-sinnode*cosi*cosp - cosnode*sinp)*vk1x + (-sinnode*cosi*sinp + cosnode*cosp)*vk1y + (sinnode*sini)*vk1z
     vzg1= (sini*cosp)*vk1x + (sini*sinp)*vk1y + cosi*vk1z
     
     
-    ########################Matrix rotation aplication second kick
+    ######################## Matrix rotation aplication second kick
     
     vxg2= (cosnode*cosi*cosp - sinnode*sinp)*vk2x + (cosnode*cosi*sinp + sinnode*cosp)*vk2y + (-cosnode*sini)*vk2z
     vyg2= (-sinnode*cosi*cosp - cosnode*sinp)*vk2x + (-sinnode*cosi*sinp + cosnode*cosp)*vk2y + (sinnode*sini)*vk2z
     vzg2= (sini*cosp)*vk2x + (sini*sinp)*vk2y + cosi*vk2z
     
-    #######################Initial time for integration (bigger than the minimum time to the first merger to occur 3e7 yr)
+    ####################### Initial time for integration (bigger than the minimum time to the first merger to occur 3e7 yr)
     ## Fiducial model van der Voort et al. 2014
     t=random.uniform(2.3,769.23)  #internal time units
 
-    ###########################Differential ecuations solver
+    ########################### Differential ecuations solver
     ###        tsn1 > tsn2
     
 
@@ -209,10 +209,9 @@ for i in range(260,6189):
             t_orb.append(t0[j]*13) #Time in Myr
             
             
-            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
+            orbits.write("%.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
             
                  
-                
         x_orb=[]
         y_orb=[]
         z_orb=[]
@@ -222,9 +221,9 @@ for i in range(260,6189):
             x_orb.append(r1[j,0]*3.5)
             y_orb.append(r1[j,1]*3.5)
             z_orb.append(r1[j,2]*3.5)
-            t_orb.append(t0[j]*13) #Time in Myr
+            t_orb.append(t1[j]*13) #Time in Myr
 
-            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j], t_orb[j]))
+            orbits.write("%.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
 
                 
         x_orb=[]
@@ -236,9 +235,9 @@ for i in range(260,6189):
             x_orb.append(r2[j,0]*3.5)
             y_orb.append(r2[j,1]*3.5)
             z_orb.append(r2[j,2]*3.5)
-            t_orb.append(t0[j]*13) #Time in Myr
+            t_orb.append(t2[j]*13) #Time in Myr
 
-            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j], t_orb[j]))
+            orbits.write("%.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
 
                 
         orbits.write("\n")
@@ -275,7 +274,6 @@ for i in range(260,6189):
                
         ###########################Saving orbits in files
         ###     tsn1 < tsn2
-             
         
         x_orb=[]
         y_orb=[]
@@ -288,10 +286,8 @@ for i in range(260,6189):
             t_orb.append(t0[j]*13) #Time in Myr
             
             
-            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
+            orbits.write("%.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
             
-                 
-                
         x_orb=[]
         y_orb=[]
         z_orb=[]
@@ -301,9 +297,9 @@ for i in range(260,6189):
             x_orb.append(r1[j,0]*3.5)
             y_orb.append(r1[j,1]*3.5)
             z_orb.append(r1[j,2]*3.5)
-            t_orb.append(t0[j]*13) #Time in Myr
+            t_orb.append(t1[j]*13) #Time in Myr
 
-            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j], t_orb[j]))
+            orbits.write("%.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
 
                 
         x_orb=[]
@@ -315,9 +311,9 @@ for i in range(260,6189):
             x_orb.append(r2[j,0]*3.5)
             y_orb.append(r2[j,1]*3.5)
             z_orb.append(r2[j,2]*3.5)
-            t_orb.append(t0[j]*13) #Time in Myr
+            t_orb.append(t2[j]*13) #Time in Myr
 
-            orbits.write("%.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j], t_orb[j]))
+            orbits.write("%.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
 
                 
         orbits.write("\n")
