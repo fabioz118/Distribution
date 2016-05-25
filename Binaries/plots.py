@@ -1,3 +1,11 @@
+## This code make scatter plots and histograms for the population of Binary neutron stars generated with BSE.
+## Last modified 25th May.
+
+#Inputs: "Binaries.dat", which is the bns.py output.
+#Outputs: ".png" plots
+
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
@@ -5,7 +13,7 @@ from scipy.optimize import curve_fit
 
 #Read datafiles
 
-data = np.genfromtxt('binarias.dat')
+data = np.genfromtxt('binariaes.dat')
 
 j = data[:,0]
 i = data[:,1]

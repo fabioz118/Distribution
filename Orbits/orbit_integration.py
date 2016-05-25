@@ -1,7 +1,10 @@
 ########### This code integrate the trajectory of binary systems under the Milky Way's Potential.
 #Modified 23th May
 
-#### Input: distribution.dat This file contai the initial conditions for a disk with r < 50kpc
+#### Input: distribution.dat This file contains the initial conditions for a disk with r < 50kpc
+#### Output: files "orbits_*.dat"
+
+
 from matplotlib.pyplot import *
 from numpy import *
 from scipy.integrate import odeint
@@ -159,9 +162,13 @@ for i in range(260,6189):
     vyg2= (-sinnode*cosi*cosp - cosnode*sinp)*vk2x + (-sinnode*cosi*sinp + cosnode*cosp)*vk2y + (sinnode*sini)*vk2z
     vzg2= (sini*cosp)*vk2x + (sini*sinp)*vk2y + cosi*vk2z
     
+
+
     ####################### Initial time for integration (bigger than the minimum time to the first merger to occur 3e7 yr)
     ## Fiducial model van der Voort et al. 2014
     t=random.uniform(2.3,769.23)  #internal time units
+
+
 
     ########################### Differential ecuations solver
     ###        tsn1 > tsn2
