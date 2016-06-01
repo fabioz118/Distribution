@@ -1,4 +1,3 @@
-
 ####This code makes a rejection using initial positions and velocities generated with GADGET 2. Also, asign  metallicity and Star Formation Rate (SFR) according with the Milky Way radial gradients.
 
 from amuse.lab import *
@@ -79,7 +78,10 @@ form_rate=[]
 ## Metallicity dispersion
 disp = 0.005
 
-###### Star Formation Rate (SFR) assignment 
+#####################################################################
+############ Star Formation Rate (SFR) assignment ###################
+#####################################################################
+
 qload=0
 if not qload:
     
@@ -130,13 +132,12 @@ else:
     iden=data[:,i];i+=1 #(disk_id[i])
     dist=data[:,i];i+=1 #(disk_R)
 
-plt.figure(0)
-bins = np.arange(0, 25, 2)
-plt.hist(dist)
-plt.savefig("histrograma.png")
+
+#####################################################
+############## Metallicity assignment################
+#####################################################
 
 
-## Metallicity assignment
 distancia=[]
 qload=0
 disp = 0.0
@@ -185,7 +186,11 @@ plt.savefig("metal_grad.png")
 
 ics=open("ics.dat","a")
 isel=[]
-#Calculate the parametric distance between bns generated wihth bse and Gadget particles in a "m1,m2,z spac"e
+
+############################################################################################################
+#Calculate the parametric distance between bns generated wihth bse and Gadget particles in a "m1,m2,z space
+############################################################################################################
+
 for i in range(len(mass1)):
     
     print "Comparison: ",metallicity[i],mass1[i],mass2[i]
@@ -216,8 +221,8 @@ for i in range(len(mass1)):
 
     print "sorted:", metal[isort[0]],m1[isort[0]],m2[isort[0]]
 
-    ics.write("%.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f"\
-%(x[isort[0]], y[isort[0]],z[isort[0]],vx[isort[0]],vy[isort[0]],vz[isort[0]],t1[i],t2[i],t_decay[i],\
+    ics.write("%.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f"\
+%(mass1[i],mass2[i],mns1[i],mns2[i],x[isort[0]], y[isort[0]],z[isort[0]],vx[isort[0]],vy[isort[0]],vz[isort[0]],t1[i],t2[i],t_decay[i],\
  kickx1[i],kicky1[i],kickz1[i],kickx2[i],kicky2[i],kickz2[i],metal[isort[0]],dist[isort[0]],form_rate[isort[0]]))
 
 """
