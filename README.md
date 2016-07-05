@@ -66,17 +66,17 @@ Now, code rejection.py run a rejection of initial conditions to include the  met
 - Output:Folder "Orbits" containing "orbits_*dat"(One file for each system). This file contains the position and velocity at each timestep
 - Output: file with seed conditions for SPH simulations "final_disk.dat"
   
-  -1 ID
-  -2 mass 1
-  -3 mass 2
-  -4 neutron star mass 1
-  -5 neutron star mass 2
-  -6 final x position
-  -7 final y position
-  -8 final z position	
-  -9 final x velocity
-  -10 final x velocity	
-  -11 final x velocity
+  - 1: ID
+  - 2: mass 1
+  - 3: mass 2
+  - 4: neutron star mass 1
+  - 5: neutron star mass 2
+  - 6: final x position
+  - 7: final y position
+  - 8: final z position	
+  - 9: final x velocity
+  - 10: final x velocity	
+  - 11: final x velocity
 
 Code "orbit_integration.py" solve the equation of motion in different time intervals. The motion is under potential for a Milky Way galaxy.
 The run output in directory called "orbits" the positions and velocities in each step time for each binary system. 
