@@ -205,10 +205,11 @@ for i in range(len(mass1)):
 ((mass2[i] - m2[j])**2 / 1600 ) )**0.5        
         param.append(d)
 
-
-    parametric= np.array(param)
-    isort = np.argsort(parametric)   
     
+#    parametric= np.array(param)
+    isort = np.argsort(param)   
+    print isort
+
     k=0
     iclose=isort[k]
     for iclose in isel:
@@ -220,7 +221,7 @@ for i in range(len(mass1)):
 
 
     print "sorted:", metal[isort[0]],m1[isort[0]],m2[isort[0]]
-
+    print isort[0]
     ics.write("%.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f"\
 %(mass1[i],mass2[i],mns1[i],mns2[i],x[isort[0]], y[isort[0]],z[isort[0]],vx[isort[0]],vy[isort[0]],vz[isort[0]],t1[i],t2[i],t_decay[i],\
  kickx1[i],kicky1[i],kickz1[i],kickx2[i],kicky2[i],kickz2[i],metal[isort[0]],dist[isort[0]],form_rate[isort[0]]))

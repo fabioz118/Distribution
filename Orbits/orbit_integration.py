@@ -1,9 +1,6 @@
 ########### This code integrate the trajectory of binary systems under the Milky Way's Potential.
 #Modified 23th May
 
-#### Input: distribution.dat This file contains the initial conditions for a disk with r < 50kpc
-#### Output: files "orbits_*.dat"
-
 
 from matplotlib.pyplot import *
 from numpy import *
@@ -16,6 +13,18 @@ import os,commands
 import pylab as p
 import matplotlib.pyplot as plt
 import random
+
+###################Inputs
+"""
+Initial conditions: "ics_disk.dat"
+"""
+##################Outputs
+"""
+1. Orbits directory: orbits
+2. Orbits files: Inside orbits directory, a file for each system with the position and velocity on each step time.
+3. Seed conditions for SPH simulations: "final_disk.dat"
+"""
+
 
 
 ##################Clean the directory
@@ -72,29 +81,29 @@ def EOS(y,t):
 ###########################Creating files
 
 distribution=open('orbits/distribution.dat','a')
-orbits1=open('orbits_general.dat','a')
+orbits1=open('orbits/orbits_general.dat','a')
 
-ics=np.genfromtxt('ics.dat')
+ics=np.genfromtxt('ics_disk.dat')
 """
-1:j, Number
-2:i, ID
-3:mass1[0], initial mass 1
-4:mass2[0], initial mass 2
-5:mns1, neutron star mass 1
-6:mns2, neutron star mass 1
-7:times[0], supernova time 1
-8:times1[0], supernova time 2
-9:e0, initial eccentricity
-10:a0,initial semimajor axis
-11:e, final ecc.
-12:a, final sma.
-13:t, decay time
-14,15,16:values[0], values[1], values[2], velocity CM first kick
-17,18,19:values1[0], values1[1], values1[2], velocity CM second kick
-20:z
+0:i, ID
+1:mass1[0], initial mass 1
+2:mass2[0], initial mass 2
+3:mns1, neutron star mass 1
+4:mns2, neutron star mass 1
+5,6,7=x,y,z
+8,9,10=vx,vy,vz
+11: tsn1
+12:tsn2
+13: t_decay
+14,15,16= kick1 vx,vy,vz
+17,18,19= kick2 vx,vy,vz
+20:metallicity
+21: distance
+22: SFR
+
 """
 
-x=ics[:,0]
+i=ics[:,0]
 
 ################## Arrays to initial-final distributions
 x1=[]
@@ -109,29 +118,33 @@ R2=[]
 logr2=[]
 
 
-for i in range(260,6189):
+for i in range(3910,6118):
     
     print "integrating binary orbit #%d"%i
     
-    x=ics[i,0]
-    y=ics[i,1]
-    z=ics[i,2]
-    vx=ics[i,3]
-    vy=ics[i,4]
-    vz=ics[i,5]
-    tsn1=ics[i,6]
-    tsn2=ics[i,7]
-    tdecay=ics[i,8]
-    vk1x=ics[i,9]
-    vk1y=ics[i,10]
-    vk1z=ics[i,11]
-    vk2x=ics[i,12]
-    vk2y=ics[i,13]
-    vk2z=ics[i,14]
-    metal=ics[i,15]
-    distance=ics[i,16]
+    iden=ics[i,0]
+    mass1=ics[i,1]
+    mass2=ics[i,2]
+    mns1=ics[i,3]
+    mns2=ics[i,4]
+    x=ics[i,5]
+    y=ics[i,6]
+    z=ics[i,7]
+    vx=ics[i,8]
+    vy=ics[i,9]
+    vz=ics[i,10]
+    tsn1=ics[i,11]
+    tsn2=ics[i,12]
+    tdecay=ics[i,13]
+    vk1x=ics[i,14]
+    vk1y=ics[i,15]
+    vk1z=ics[i,16]
+    vk2x=ics[i,17]
+    vk2y=ics[i,18]
+    vk2z=ics[i,19]
+    metal=ics[i,20]
+    distance=ics[i,21]
     
-
     ############################Axis rotation of kick velocities
 
     
@@ -149,32 +162,29 @@ for i in range(260,6189):
     sinp=np.sin(-periapsis)
     
     
-    ######################## Matrix rotation aplication first kick
+    ########################Matrix rotation aplication first kick
     
     vxg1= (cosnode*cosi*cosp - sinnode*sinp)*vk1x + (cosnode*cosi*sinp + sinnode*cosp)*vk1y + (-cosnode*sini)*vk1z
     vyg1= (-sinnode*cosi*cosp - cosnode*sinp)*vk1x + (-sinnode*cosi*sinp + cosnode*cosp)*vk1y + (sinnode*sini)*vk1z
     vzg1= (sini*cosp)*vk1x + (sini*sinp)*vk1y + cosi*vk1z
     
     
-    ######################## Matrix rotation aplication second kick
+    ########################Matrix rotation aplication second kick
     
     vxg2= (cosnode*cosi*cosp - sinnode*sinp)*vk2x + (cosnode*cosi*sinp + sinnode*cosp)*vk2y + (-cosnode*sini)*vk2z
     vyg2= (-sinnode*cosi*cosp - cosnode*sinp)*vk2x + (-sinnode*cosi*sinp + cosnode*cosp)*vk2y + (sinnode*sini)*vk2z
     vzg2= (sini*cosp)*vk2x + (sini*sinp)*vk2y + cosi*vk2z
     
-
-
-    ####################### Initial time for integration (bigger than the minimum time to the first merger to occur 3e7 yr)
+    #######################Initial time for integration (bigger than the minimum time to the first merger to occur 3e7 yr)
     ## Fiducial model van der Voort et al. 2014
     t=random.uniform(2.3,769.23)  #internal time units
 
-
-
-    ########################### Differential ecuations solver
+    ###########################Differential ecuations solver
     ###        tsn1 > tsn2
     
 
     orbits=open('orbits/orbits_%04d.dat'%i,'a')
+    final=open('final_disk.dat','a')
 
     if (tsn1 > tsn2):
 	## Time intervals
@@ -182,15 +192,19 @@ for i in range(260,6189):
         t1=linspace((tsn2/13)+t,(tsn1/13)+t,400)
         t2=linspace((tsn1/13)+t,(tdecay/13) + t,400 )
         
+
 	# Array with initial position and velocity
         y0=([ x/3.5, y/3.5, z/3.5, vx/263, vy/263,vz/263])
         solution0=odeint(EOS,y0,t0,mxstep=400000)
         r0=solution0[:,:6]
+
         
         # Array with position and velocity before first kick
         y1=([r0[-1,0],r0[-1,1],r0[-1,2],r0[-1,3]+vxg1/263,r0[-1,4]+vyg1/263,r0[-1,5]+vzg1/263])
         solution1=odeint(EOS,y1,t1,mxstep=400000)
         r1=solution1[:,:6]
+
+
 
         # Array with position and velocity before Second kick
         y2=([r1[-1,0],r1[-1,1],r1[-1,2],r1[-1,3]+vxg2/263,r1[-1,4]+vyg2/263,r1[-1,5]+vzg2/263])
@@ -199,7 +213,7 @@ for i in range(260,6189):
 
 
         ######################### Considering the maximum galactocentric distance = 50 Kpc
-        r=( r2[-1,0]**2 + r2[-1,1]**2 + r2[-1,2]**2)**0.5
+        r=( r2[-1,0]**2 + r2[-1,1]**2 )**0.5
         print "Final galactocentric distance = %.5f"%(r*3.5)
         print "\n"
         
@@ -208,43 +222,62 @@ for i in range(260,6189):
         x_orb=[]
         y_orb=[]
         z_orb=[]
+        vx_orb=[]
+        vy_orb=[]
+        vz_orb=[] 
         t_orb=[]
         for j in range(len(r0[:,0])):
             x_orb.append(r0[j,0]*3.5)
             y_orb.append(r0[j,1]*3.5)
             z_orb.append(r0[j,2]*3.5)
+            vx_orb.append(r0[j,3]*263)
+            vy_orb.append(r0[j,4]*263)
+            vz_orb.append(r0[j,5]*263)
             t_orb.append(t0[j]*13) #Time in Myr
             
             
-            orbits.write("%.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
+            orbits.write("%.8f %.8f %.8f %.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],vx_orb[j],vy_orb[j],vz_orb[j],t_orb[j]))
             
                  
+                
         x_orb=[]
         y_orb=[]
         z_orb=[]
+        vx_orb=[]
+        vy_orb=[]
+        vz_orb=[]
         t_orb=[]
         for j in range(len(r1[:,0])):
             
             x_orb.append(r1[j,0]*3.5)
             y_orb.append(r1[j,1]*3.5)
             z_orb.append(r1[j,2]*3.5)
+            vx_orb.append(r1[j,3]*263)
+            vy_orb.append(r1[j,4]*263)
+            vz_orb.append(r1[j,5]*263)
             t_orb.append(t1[j]*13) #Time in Myr
 
-            orbits.write("%.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
+            orbits.write("%.8f %.8f %.8f %.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],vx_orb[j],vy_orb[j],vz_orb[j], t_orb[j]))
 
                 
         x_orb=[]
         y_orb=[]
         z_orb=[]
+        vx_orb=[]
+        vy_orb=[]
+        vz_orb=[]
         t_orb=[]
         for j in range(len(r2[:,0])):
             
             x_orb.append(r2[j,0]*3.5)
             y_orb.append(r2[j,1]*3.5)
             z_orb.append(r2[j,2]*3.5)
+            vx_orb.append(r2[j,3]*263)
+            vy_orb.append(r2[j,4]*263)
+            vz_orb.append(r2[j,5]*263)
             t_orb.append(t2[j]*13) #Time in Myr
 
-            orbits.write("%.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
+            orbits.write("%.8f %.8f %.8f %.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],vx_orb[j],vy_orb[j],vz_orb[j], t_orb[j]))
 
                 
         orbits.write("\n")
@@ -260,67 +293,91 @@ for i in range(260,6189):
         y0=([ x/3.5, y/3.5, z/3.5, vx/263, vy/263,vz/263])
         solution0=odeint(EOS,y0,t0,mxstep=400000)
         r0=solution0[:,:6]
-        v0=solution0[:,3:6]
+
         
         # Array with position and velocity before first kick
         y1=([r0[-1,0],r0[-1,1],r0[-1,2],r0[-1,3]+vxg1/263,r0[-1,4]+vyg1/263,r0[-1,5]+vzg1/263])
         solution1=odeint(EOS,y1,t1,mxstep=400000)
         r1=solution1[:,:6]
-        v1=solution1[:,3:6]
+
         
         # Array with position and velocity before second kick
         y2=([r1[-1,0],r1[-1,1],r1[-1,2],r1[-1,3]+vxg2/263,r1[-1,4]+vyg2/263,r1[-1,5]+vzg2/263])
         solution2=odeint(EOS,y2,t2,mxstep=40000)
-        r2=solution2[:,:3]
-        v2=solution2[:,3:6]
+        r2=solution2[:,:6]
+
         
         #################### Considering the maximum galactocentric distance = 50 Kpc  
-        r=( r2[-1,0]**2 + r2[-1,1]**2 + r2[-1,2]**2)**0.5
+        r=( r2[-1,0]**2 + r2[-1,1]**2)**0.5
         print "Final galactocentric distance = %.5f"%(r*3.5)
         print "\n"
                
         ###########################Saving orbits in files
         ###     tsn1 < tsn2
+             
         
         x_orb=[]
         y_orb=[]
         z_orb=[]
+        vx_orb=[]
+        vy_orb=[]
+        vz_orb=[]
         t_orb=[]
         for j in range(len(r0[:,0])):
             x_orb.append(r0[j,0]*3.5)
             y_orb.append(r0[j,1]*3.5)
             z_orb.append(r0[j,2]*3.5)
+            vx_orb.append(r0[j,3]*3.5)
+            vy_orb.append(r0[j,4]*3.5)
+            vz_orb.append(r0[j,5]*3.5)
             t_orb.append(t0[j]*13) #Time in Myr
             
             
-            orbits.write("%.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
+            orbits.write("%.8f %.8f %.8f %.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],vx_orb[j],vy_orb[j],vz_orb[j],t_orb[j]))
             
+                 
+                
         x_orb=[]
         y_orb=[]
         z_orb=[]
+        vx_orb=[]
+        vy_orb=[]
+        vz_orb=[]
         t_orb=[]
         for j in range(len(r1[:,0])):
             
             x_orb.append(r1[j,0]*3.5)
             y_orb.append(r1[j,1]*3.5)
             z_orb.append(r1[j,2]*3.5)
+            vx_orb.append(r1[j,3]*3.5)
+            vy_orb.append(r1[j,4]*3.5)
+            vz_orb.append(r1[j,5]*3.5)
             t_orb.append(t1[j]*13) #Time in Myr
 
-            orbits.write("%.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
+            orbits.write("%.8f %.8f %.8f %.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],vx_orb[j],vy_orb[j],vz_orb[j], t_orb[j]))
 
                 
         x_orb=[]
         y_orb=[]
         z_orb=[]
+        vx_orb=[]
+        vy_orb=[]
+        vz_orb=[]
         t_orb=[]
         for j in range(len(r2[:,0])):
             
             x_orb.append(r2[j,0]*3.5)
             y_orb.append(r2[j,1]*3.5)
             z_orb.append(r2[j,2]*3.5)
+            vx_orb.append(r2[j,3]*3.5)
+            vy_orb.append(r2[j,4]*3.5)
+            vz_orb.append(r2[j,5]*3.5)
             t_orb.append(t2[j]*13) #Time in Myr
 
-            orbits.write("%.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],t_orb[j]))
+            orbits.write("%.8f %.8f %.8f %.8f %.8f %.8f %.8f\n"%(x_orb[j],y_orb[j],z_orb[j],vx_orb[j],vy_orb[j],vz_orb[j], t_orb[j]))
 
-                
+
         orbits.write("\n")
+
+
+    final.write("%.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f %.8f\n"%(iden, mass1, mass2, mns1, mns2, r2[-1,0], r2[-1,1], r2[-1,2], r2[-1,3], r2[-1,4], r2[-1,5]))
