@@ -75,8 +75,8 @@ Now, code rejection.py run a rejection of initial conditions to include the  met
   - 7: final y position
   - 8: final z position	
   - 9: final x velocity
-  - 10: final x velocity	
-  - 11: final x velocity
+  - 10: final y velocity	
+  - 11: final z velocity
 
 Code "orbit_integration.py" solve the equation of motion in different time intervals. The motion is under potential for a Milky Way galaxy.
 The run output in directory called "orbits" the positions and velocities in each step time for each binary system. 
