@@ -49,33 +49,34 @@ Code plots.py do some scatter plots for parameters of the resultant systems.
 
 Now, code rejection.py run a rejection of initial conditions to include the  metallicity gradient and star formation rate (SFR). The output is a file with positions and velocities called "ics.dat":
 
-- 1,2,3: x,y,z
-- 4,5,6: vx,vy,vz
-- 7: supernova time 1
-- 8: supernova time 2
-- 9: decay timescale
+  - 1,2,3: x,y,z
+  - 4,5,6: vx,vy,vz
+  - 7: supernova time 1
+  - 8: supernova time 2
+  - 9: decay timescale
   - 10,11,12: kick1 vx,vy,vz
-- 13,14,15: kick2 vx,vy,vz
-- 16: metallicity
-- 17: Galactocentric distance
-- 18: SFR
+  - 13,14,15: kick2 vx,vy,vz
+  - 16: metallicity
+  - 17: Galactocentric distance
+  - 18: SFR
 
 
 ####Orbits integration (Orbits folder):
 - Input:"ics_disk.dat"
 - Output:Folder "Orbits" containing "orbits_*dat"(One file for each system). This file contains the position and velocity at each timestep
 - Output: file with seed conditions for SPH simulations "final_disk.dat"
-  1- ID
-  2- mass 1
-  3- mass 2
-  4- neutron star mass 1
-  5- neutron star mass 2
-  6- final x position
-  7- final y position
-  8- final z position	
-  9- final x velocity
-  10- final x velocity	
-  11- final x velocity
+  
+  -1 ID
+  -2 mass 1
+  -3 mass 2
+  -4 neutron star mass 1
+  -5 neutron star mass 2
+  -6 final x position
+  -7 final y position
+  -8 final z position	
+  -9 final x velocity
+  -10 final x velocity	
+  -11 final x velocity
 
 Code "orbit_integration.py" solve the equation of motion in different time intervals. The motion is under potential for a Milky Way galaxy.
 The run output in directory called "orbits" the positions and velocities in each step time for each binary system. 
