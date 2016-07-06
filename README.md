@@ -82,7 +82,7 @@ Code "orbit_integration.py" solve the equation of motion in different time inter
 The run output in directory called "orbits" the positions and velocities in each step time for each binary system. 
 
 ####Density surfaces (Contours Folder):
-
+- Input:
 
 
 
